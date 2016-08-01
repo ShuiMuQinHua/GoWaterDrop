@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -41,7 +42,7 @@ func user_add() {
 	//插入数据
 	stmt, err := db.Prepare("INSERT user SET user_name=?,pwd=?,roles=?")
 	checkErr(err)
-	res, err := stmt.Exec("bb", "12", "23")
+	res, err := stmt.Exec("bbbb", "12", "23")
 	checkErr(err)
 	id, err := res.LastInsertId()
 	checkErr(err)
@@ -56,7 +57,6 @@ func user_edit() {
 	if affect > 0 {
 		fmt.Println("更新成功")
 	}
-
 }
 
 func user_del() {
@@ -69,11 +69,21 @@ func user_del() {
 
 func main() {
 	//根据命令行参数调取方法
-
-	//user_add()
-	//user_list()
-	//user_edit()
-	//user_del()
+	args := os.Args[1]
+	switch {
+	case args == "1":
+		user_add()
+		break
+	case args == "2":
+		user_del()
+		break
+	case args == "3":
+		user_list()
+		break
+	case args == "4":
+		user_edit()
+		break
+	}
 }
 
 func checkErr(err error) {
