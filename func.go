@@ -8,6 +8,7 @@ func main() {
 
 	fmt.Println(sum(a, b))
 	fmt.Println(area(a, b))
+
 }
 
 func sum(a, b int) int {
