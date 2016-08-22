@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"strconv" //处理string类型的转换
 	"strings"
 )
 
 func main() {
 	tt := "ab,cT,EC,T"
-	str1 := "2abc8242342"
+	str1 := "2ab c82  42342"
+	str0 := "sakdsai,iwrewi,0976767"
 	fmt.Println(strings.ToUpper(tt))
 	fmt.Println(strings.Split(tt, ","))
 	if strings.HasPrefix(str1, "abc") { //判断是否有前缀
@@ -54,4 +56,17 @@ func main() {
 	fmt.Println(strings.Trim(str1, "2"))      //去除str1中开头和结尾的 “2”字符串
 	fmt.Println(strings.TrimLeft(str1, "2"))  //去除str1中开头的 "2"字符串
 	fmt.Println(strings.TrimRight(str1, "2")) //去除str1中结尾的 "2"字符串
+	fmt.Println(strings.Fields(str1))         //把str1 以空格分隔  返回一个切片 slice
+	fmt.Println(strings.Split(str0, ","))     //用, 去分隔str0 返回一个切片  slice
+
+	slic := []string{"we32", "242dfd", "2343df"} //如何规定了长度就是数组，如果没规定长度  就是切片
+	fmt.Println(strings.Join(slic, ","))         //用,把切片slic连接成字符串
+
+	/*
+		string的类型转换
+	*/
+	fmt.Println(strconv.IntSize) //用于获取程序所运行的平台下 int类型所占的位数
+	in1 := 100876
+	fmt.Println(strconv.Itoa(in1)) //返回数字i所表示的字符串类型的十进制数
+
 }
