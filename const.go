@@ -1,7 +1,8 @@
 package main
 
 import "fmt"
-import "os"
+
+//import "os"
 
 func main() {
 	const b = 3 / 2
@@ -9,10 +10,14 @@ func main() {
 73547328325673456348767348` //Go中多行的连接
 	fmt.Println(a)
 	fmt.Println(b)
+	//用 + 连接多行的字符串
+	c := "siueijfierjfierg" +
+		"sjdusjfuesrjfue"
+	fmt.Println(c)
 
 	//os包获取环境变量
-	var goos string = os.Getenv("GOOS")
-	fmt.Printf("the system is %s\n", goos)
-	path := os.Getenv("PATH")
-	fmt.Printf("the path is %s\n", path)
+	//	var goos string = os.Getenv("GOOS")
+	//	fmt.Printf("the system is %s\n", goos)
+	//	path := os.Getenv("PATH")
+	//	fmt.Printf("the path is %s\n", path)
 }
