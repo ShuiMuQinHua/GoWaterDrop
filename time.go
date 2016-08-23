@@ -42,4 +42,8 @@ func main() {
 	t := time.Now()                              //获取当前时间的结构体
 	fmt.Println(t.Format("2006-01-02 15:04:05")) //格式化输出
 	fmt.Println(t.Unix())                        //获取当前时间的时间戳
+
+	fmt.Println(t.Day())    //获取当前时间的号
+	fmt.Println(t.Minute()) //获取当前时间的分钟
+	fmt.Println(t.Year())   //获取当前时间的年份
 }
