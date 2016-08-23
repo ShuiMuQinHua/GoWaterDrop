@@ -67,6 +67,14 @@ func main() {
 	*/
 	fmt.Println(strconv.IntSize) //用于获取程序所运行的平台下 int类型所占的位数
 	in1 := 100876
-	fmt.Println(strconv.Itoa(in1)) //返回数字i所表示的字符串类型的十进制数
+	fmt.Println(strconv.Itoa(in1)) //数字转换为字符串
+	//	strconv.FormatFloat()          //将64位浮点型的数据转换为字符串
+
+	str00 := "23432"
+	in11, _ := strconv.Atoi(str00) //字符串转换为数字
+	fmt.Println(in11)
+
+	flo64, _ := strconv.ParseFloat(str00, 64) //将字符串转换为float64
+	fmt.Println(flo64)
 
 }
