@@ -8,11 +8,12 @@ func main() {
 	//	func1()
 	//	a()
 	//f()
-	result := 0
-	for i := 0; i <= 10; i++ {
-		result = fibonacci(i)
-		fmt.Println(result)
-	}
+	//	result := 0
+	//	for i := 0; i <= 10; i++ {
+	//		result = fibonacci(i)
+	//		fmt.Println(result)
+	//	}
+	callback(1, Add)
 }
 
 func func1() {
@@ -47,4 +48,12 @@ func fibonacci(n int) (res int) {
 		res = fibonacci(n-1) + fibonacci(n-2)
 	}
 	return
+}
+
+//将函数作为参数
+func callback(y int, f func(int, int)) {
+	f(y, 2)
+}
+func Add(a, b int) {
+	fmt.Printf("the sum of %d and %d is: %d\n", a, b, a+b)
 }
