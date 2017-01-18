@@ -32,7 +32,7 @@ func main() {
 	fmt.Println(string(strB))
 
 	//这里将切片和字典编码为JSON数组或对象
-	slcD := []string{"apple", "peach", "pear"}
+	slcD := []string{"apple我我我", "peach", "pear"}
 	slcB, _ := json.Marshal(slcD)
 	fmt.Println(string(slcB))
 

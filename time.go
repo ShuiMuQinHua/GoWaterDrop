@@ -17,32 +17,38 @@ const (
 
 func main() {
 	//我们要用上面的各种格式来格式化这个thisdate
-	thisdate := "2014-03-17 14:55:06"
-	timeformatdate, _ := time.Parse(f_datetime, thisdate)
-	fmt.Println(timeformatdate)
+	// thisdate := "2014-03-17 14:55:06"
+	// timeformatdate, _ := time.Parse(f_datetime, thisdate)
+	// fmt.Println(timeformatdate)
 
-	convdate := timeformatdate.Format(f_date)
-	fmt.Println(convdate)
+	// convdate := timeformatdate.Format(f_date)
+	// fmt.Println(convdate)
 
-	convshortdate := timeformatdate.Format(f_shortdate)
-	fmt.Println(convshortdate)
+	// convshortdate := timeformatdate.Format(f_shortdate)
+	// fmt.Println(convshortdate)
 
-	convtime := timeformatdate.Format(f_times)
-	fmt.Println(convtime)
+	// convtime := timeformatdate.Format(f_times)
+	// fmt.Println(convtime)
 
-	convshorttime := timeformatdate.Format(f_shorttime)
-	fmt.Println(convshorttime)
+	// convshorttime := timeformatdate.Format(f_shorttime)
+	// fmt.Println(convshorttime)
 
-	convnewdatetime := timeformatdate.Format(f_newdatetime)
-	fmt.Println(convnewdatetime)
+	// convnewdatetime := timeformatdate.Format(f_newdatetime)
+	// fmt.Println(convnewdatetime)
 
-	convnewtime := timeformatdate.Format(f_newtime)
-	fmt.Println(convnewtime)
+	// convnewtime := timeformatdate.Format(f_newtime)
+	// fmt.Println(convnewtime)
 
-	t := time.Now()                              //获取当前时间的结构体
+	
+	//获取当前时间的结构体
+	t := time.Now()                              
 	fmt.Println(t.Format("2006-01-02 15:04:05")) //格式化输出
-	fmt.Println(t.Unix())                        //获取当前时间的时间戳
+	//获取当前时间的时间戳
+	fmt.Println(t.Unix())                        
 
+	fmt.Println(t.Date())
+	fmt.Println(t.Month())
+	fmt.Println(t.Weekday())
 	fmt.Println(t.Day())    //获取当前时间的号
 	fmt.Println(t.Minute()) //获取当前时间的分钟
 	fmt.Println(t.Year())   //获取当前时间的年份
