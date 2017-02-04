@@ -2,29 +2,55 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"io/ioutil"
+	"net/http"
+	"sync"
 )
 
 func main() {
-	ch := make(chan string)
+	max_concurrent_count := 20
 
-	go sendData(ch)
-	go getData(ch)
+	wg := sync.WaitGroup{}
+	wg.Add(max_concurrent_count)
 
-	time.Sleep(1e9)
-}
+	for i := 0; i < max_concurrent_count; i++ {
+		// 启动协程, 并发地发起 HTTP 请求.
+		go func() {
+			defer wg.Done()
 
-func sendData(ch chan string) {
-	ch <- "www"
-	ch <- "ttt"
-	ch <- "lll"
-}
+			resp, _ := http.Get("http://www.baidu.com")
 
-func getData(ch chan string) {
-	var input string
-	//time.Sleep(1e9)
-	for {
-		input = <-ch
-		fmt.Printf("%s", input)
+			defer resp.Body.Close()
+			body, _ := ioutil.ReadAll(resp.Body)
+
+			fmt.Println(string(body))
+		}()
 	}
+
+	wg.Wait()
 }
+
+//func main() {
+//	ch := make(chan string)
+
+//	go sendData(ch)
+//	go getData(ch)
+
+//	time.Sleep(1e9)
+
+//}
+
+//func sendData(ch chan string) {
+//	ch <- "www"
+//	ch <- "ttt"
+//	ch <- "lll"
+//}
+
+//func getData(ch chan string) {
+//	var input string
+//	//time.Sleep(1e9)
+//	for {
+//		input = <-ch
+//		fmt.Printf("%s", input)
+//	}
+//}
