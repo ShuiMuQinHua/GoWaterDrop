@@ -82,6 +82,7 @@ func printSlice(x []int) {
 	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
 }
 
+/*	append() 和 copy() 函数*/
 func appendcopy() {
 	fmt.Println("切片copy与append")
 	var numbers []int
