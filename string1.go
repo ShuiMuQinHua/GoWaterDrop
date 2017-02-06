@@ -15,6 +15,8 @@ func main() {
 	fmt.Println(strings.Contains("", ""))           //true 这里要特别注意
 	fmt.Println(strings.Contains("我是中国人", "我"))     //true
 	fmt.Println("")
+
+	//判断字符串s是否包含字符串chars中的任一字符
 	fmt.Println(" ContainsAny 函数的用法")
 	fmt.Println(strings.ContainsAny("team", "i"))        // false
 	fmt.Println(strings.ContainsAny("failure", "u & i")) // true
@@ -32,7 +34,8 @@ func main() {
 	fmt.Println(strings.EqualFold("Go", "go")) //大小写忽略
 	fmt.Println("")
 	fmt.Println(" Fields 函数的用法")
-	fmt.Println("Fields are: %q", strings.Fields("  foo bar  baz   ")) //["foo" "bar" "baz"] 返回一个列表
+	//["foo" "bar" "baz"] 返回一个列表
+	fmt.Println("Fields are: %q", strings.Fields("  foo bar  baz   "))
 	//相当于用函数做为参数，支持匿名函数
 	for _, record := range []string{" aaa*1892*122", "aaa\taa\t", "124|939|22"} {
 		fmt.Println(strings.FieldsFunc(record, func(ch rune) bool {

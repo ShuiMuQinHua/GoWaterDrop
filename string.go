@@ -7,9 +7,17 @@ import (
 )
 
 func main() {
+
 	tt := "ab,cT,EC,T"
 	str1 := "2ab c82  42342"
 	str0 := "sakdsai,iwrewi,0976767"
+
+	//在Go当中 string底层是用byte数组存的，并且是不可以改变的 中文字符是用3个字节存的
+	//要想访问中文的话，还是要用rune切片，这样就能按下标访问
+	str000 := "go编程"
+	fmt.Println(len(str000))         //8 因为一个汉字 3个字节
+	fmt.Println(len([]rune(str000))) //4
+
 	fmt.Println(strings.ToUpper(tt))
 	fmt.Println(strings.Split(tt, ","))
 	if strings.HasPrefix(str1, "abc") { //判断是否有前缀
