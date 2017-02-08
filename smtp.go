@@ -23,10 +23,10 @@ func SendToMail(user, password, host, to, subject, body, mailtype string) error 
 }
 
 func main() {
-	user := "caiyunyun@cantv.cn"
-	password := "caiyunyun"
+	user := "cai******@c***v.cn"
+	password := "cai******"
 	host := "smtp.exmail.qq.com:25"
-	to := "1835373375@qq.com"
+	to := "183*****375@qq.com"
 
 	subject := "使用Golang发送邮件"
 
