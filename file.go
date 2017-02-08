@@ -4,7 +4,12 @@ import (
 	"archive/zip"
 	"bufio"
 	"compress/gzip"
+	"crypto/md5"
+	"crypto/sha1"
+	"crypto/sha256"
+	"crypto/sha512"
 	"io/ioutil"
+	"net/http"
 	"time"
 	//	"flag"
 	"fmt"
@@ -34,7 +39,9 @@ func main() {
 	//	bufioRead()
 	//	scanRead()
 	//	zipFile()
-	uzipFile()
+	//	uzipFile()
+	//	downHttpFile()
+	hashFile()
 	//write_file()
 	//read_file()
 	//getFileList()
@@ -599,18 +606,54 @@ func uzipFile() {
 	}
 	defer gzipReader.Close()
 
-	//		// 解压缩到一个writer,它是一个file writer
-	//		outfileWriter, err := os.Create("unzipped.txt")
-	//		if err != nil {
-	//			log.Fatal(err)
-	//		}
-	//		defer outfileWriter.Close()
+	// 解压缩到一个writer,它是一个file writer
+	outfileWriter, err := os.Create("unzipped.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer outfileWriter.Close()
 
-	//		// 复制内容
-	//		_, err = io.Copy(outfileWriter, gzipReader)
-	//		if err != nil {
-	//			log.Fatal(err)
-	//		}
+	// 复制内容
+	_, err = io.Copy(outfileWriter, gzipReader)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+//通过http下载文件
+func downHttpFile() {
+	newFile, err := os.Create("devdungeon.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer newFile.Close()
+
+	url := "http://www.devdungeon.com/archive"
+	response, err := http.Get(url)
+	defer response.Body.Close()
+
+	// 将HTTP response Body中的内容写入到文件
+	// Body满足reader接口，因此我们可以使用ioutil.Copy
+	numBytesWritten, err := io.Copy(newFile, response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("Downloaded %d byte file.\n", numBytesWritten)
+}
+
+//hash和摘要
+func hashFile() {
+	// 得到文件内容
+	data, err := ioutil.ReadFile("test.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// 计算Hash
+	fmt.Printf("Md5: %x\n\n", md5.Sum(data))
+	fmt.Printf("Sha1: %x\n\n", sha1.Sum(data))
+	fmt.Printf("Sha256: %x\n\n", sha256.Sum256(data))
+	fmt.Printf("Sha512: %x\n\n", sha512.Sum512(data))
 }
 
 //读文件
