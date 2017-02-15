@@ -11,10 +11,16 @@ func main() {
 	tt := "ab,cT,EC,T"
 	str1 := "2ab c82  42342"
 	str0 := "sakdsai,iwrewi,0976767"
+	const a = `0.63519283478325730257
+73547328325673456348767348` //Go中多行的连接
 
 	//在Go当中 string底层是用byte数组存的，并且是不可以改变的 中文字符是用3个字节存的
 	//要想访问中文的话，还是要用rune切片，这样就能按下标访问
 	str000 := "go编程"
+	c := "siueijfierjfierg" +
+		"sjdusjfuesrjfue"
+	fmt.Println(c)
+	fmt.Println(a)
 	fmt.Println(len(str000))         //8 因为一个汉字 3个字节
 	fmt.Println(len([]rune(str000))) //4
 

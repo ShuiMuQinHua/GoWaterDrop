@@ -54,6 +54,21 @@ func fibonacci(n int) (res int) {
 func callback(y int, f func(int, int)) {
 	f(y, 2)
 }
+
 func Add(a, b int) {
 	fmt.Printf("the sum of %d and %d is: %d\n", a, b, a+b)
+}
+
+//传递了变长参数
+func Min(a ...int) int {
+	if len(a) == 0 {
+		return 0
+	}
+	min := a[0]
+	for _, v := range a {
+		if v < min {
+			min = v
+		}
+	}
+	return min
 }

@@ -1,5 +1,6 @@
 package main
 
+//net包  获取ip地址
 import (
 	"fmt"
 	"net"

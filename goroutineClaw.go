@@ -1,5 +1,6 @@
 package main
 
+//使用goroutine goquery抓取网页数据
 import (
 	"fmt"
 	"log"

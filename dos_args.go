@@ -1,5 +1,6 @@
 package main
 
+//命令行参数
 import (
 	"fmt"
 	"os"
