@@ -40,7 +40,8 @@ func f() {
 	}
 }
 
-//递归函数,计算斐波那契数列(递归调用可能会出现栈溢出 在go中  我们使用“懒惰求值”法解决这个问题，用channer 和goroutine来解决)
+//递归函数,计算斐波那契数列(递归调用可能会出现栈溢出 在go中
+//我们使用“懒惰求值”法解决这个问题，用channer 和goroutine来解决)
 func fibonacci(n int) (res int) {
 	if n <= 1 {
 		res = 1

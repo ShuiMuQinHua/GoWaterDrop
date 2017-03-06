@@ -73,6 +73,7 @@ func StartClawGolang(clawUrl string, CurrentPage int) {
 	isDone <- 1
 }
 
+//执行抓取，并写入channel
 func StartClaw(clawUrl string, CurrentPage int) {
 	doc, err := goquery.NewDocument(clawUrl)
 	if err != nil {
