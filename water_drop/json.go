@@ -12,7 +12,7 @@ type Response1 struct {
 }
 
 type Response2 struct {
-	Page   int      `json:"page"`
+	Page   int      `json:"page"` //当以一个json格式返回的时候，这个字段的key会设置为page
 	Fruits []string `json:"fruits"`
 }
 
