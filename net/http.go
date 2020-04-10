@@ -14,7 +14,6 @@ func httpGet() {
 	resp, err := http.Get("https://studygolang.com/static/pkgdoc/index.html#archive")
 	if err != nil {
 		//handle error
-
 	}
 
 	defer resp.Body.Close()

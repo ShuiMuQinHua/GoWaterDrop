@@ -60,6 +60,9 @@ func main(){
 		s := arr[:]
 		t := s[1:2]  // [ startIndex: endIndex] 包含startIndex 不包含endIndex
 		fmt.Println(t)  // [2]
+		t[0] = 100    //会同时修改t和s，因为切片拆分，底层还是共用的同一块儿指针切片
+		fmt.Println(t) // [100]
+		fmt.Println(s) // [1 100 3 4 5]
 
 		fmt.Println(s[:0]) // []
 

@@ -1,8 +1,14 @@
+/* 
+1. 递归实现 斐波那契数列
+2. 递归实现 排课 每个课程的学习都有一个前后顺序
+*/
+
 package main
 
 import (
 	"fmt"
 	"time"
+	"sort"
 )
 
 const LIM = 41
@@ -22,6 +28,9 @@ func main() {
 	end := time.Now()
 	delta := end.Sub(start)
 	fmt.Printf("longCalculation took this amount of time: %s\n", delta)
+
+	//递归排课
+	directedGraph()
 }
 
 func fibonacci(n int) (res uint64) {
@@ -37,4 +46,50 @@ func fibonacci(n int) (res uint64) {
 	}
 	fibs[n] = res
 	return
+}
+
+/* 递归实现排课程 每个课程的学习会有一个前后顺序 */
+func directedGraph(){
+	var prereqs = map[string][]string{
+		"algorithms": {"data structures"},
+		"calculus": {"linear algebra"},
+		"compilers": {
+			"data structures",
+			"formal languages",
+			"computer organization",
+		},
+		"data structures":       {"discrete math"},
+		"databases":             {"data structures"},
+		"discrete math":         {"intro to programming"},
+		"formal languages":      {"discrete math"},
+		"networks":              {"operating systems"},
+		"operating systems":     {"data structures", "computer organization"},
+		"programming languages": {"data structures", "computer organization"},
+	}
+
+    for i, course := range topoSort(prereqs) {
+        fmt.Printf("%d:\t%s\n", i+1, course)
+    }
+}
+
+func topoSort(m map[string][]string) []string {
+    var order []string
+    seen := make(map[string]bool)
+    var visitAll func(items []string)
+    visitAll = func(items []string) {
+        for _, item := range items {
+            if !seen[item] {
+                seen[item] = true
+                visitAll(m[item])
+                order = append(order, item)
+            }
+        }
+    }
+    var keys []string
+    for key := range m {
+        keys = append(keys, key)
+	}
+    sort.Strings(keys)
+    visitAll(keys)
+    return order
 }

@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+//Interface定义了一个或一组method(s)，这些method(s)只有函数签名，没有具体的实现代码
 type phic interface {
 	area() float64
 	perm() float64

@@ -12,21 +12,22 @@ type LessAdder interface {
 }
 
 /*
-* 在GO语言中可以根据 func (a Integer) Less(b Integer) bool 自动生成
-* func (a *Integer) Less(b Integer) bool {
+ 在GO语言中可以根据 func (a Integer) Less(b Integer) bool 自动生成
+ func (a *Integer) Less(b Integer) bool {
     return (*a).Less(b)
-} 这个方法  因为在得到的函数中 *a是最开始的对象 也是a本身的值
+ } 
+ 这个方法  因为在得到的函数中 *a是最开始的对象 也是a本身的值
 */
 func (a Integer) Less(b Integer) bool {
 	return a < b
 }
 
 /*
-* 在GO中无法根据 func (a *Integer) Add(b Integer) 自动生成
-* func (a Integer) Add(b Integer){
+ 在GO中无法根据 func (a *Integer) Add(b Integer) 自动生成
+ func (a Integer) Add(b Integer){
     (&a).Add(b)
-} 方法 在后面这个方法中 &a 是a这个变量的地址 也就是 调用的参数变了  对对象没有影响
-* 所以这个是无法转换的
+ } 
+ 方法 在后面这个方法中 &a 是a这个变量的地址 也就是 调用的参数变了  对对象没有影响所以这个是无法转换的
 */
 func (a *Integer) Add(b Integer) {
 	*a += b

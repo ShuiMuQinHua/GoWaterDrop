@@ -1,3 +1,4 @@
+/* 一致性hash */
 package hashring
 
 import (
