@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package example;
+
+enum FOO { X = 0; };
+
+message Test {
+string label = 1;
+int32 type = 2 ;
+int64 reps = 3;
+}
+
+message Test2  {
+	string label = 1;
+    uint32 type = 2 ;
+    int64 reps = 3;
+}
+
+
+
+protoc -I . --go_out=plugins=grpc:. customer.proto
+
+
+
+hdel
+hscan  INC_BLOCK_HOT前缀
