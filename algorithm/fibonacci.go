@@ -44,9 +44,16 @@ func main() {
 		directedGraph()
 	*/
 
-	//递归计算爬楼梯的方式
-	resData = make(map[int]int)
-	ret := stairsNum(7)
+	/*递归计算爬楼梯的方式 
+		resData = make(map[int]int)
+		ret := stairsNum(7)
+		fmt.Println(ret)
+		ret = stairsNumFor(7)
+		fmt.Println(ret)
+	*/
+
+	/* 最终推荐人 */
+	ret := finalReferrer()
 	fmt.Println(ret)
 }
 
@@ -89,10 +96,13 @@ func directedGraph(){
     }
 }
 
+/* 1.终止条件，大的map中，不存在的key即可返回
+2.每一行都是需要问其他行，我的每一个元素存不存在 */
 func topoSort(m map[string][]string) []string {
     var order []string
     seen := make(map[string]bool)
-    var visitAll func(items []string)
+	var visitAll func(items []string)
+	
     visitAll = func(items []string) {
         for _, item := range items {
             if !seen[item] {
@@ -112,7 +122,7 @@ func topoSort(m map[string][]string) []string {
 }
 
 
-// f(n) = f(n-1) + f(n-2)  f(1)=1 f(2)=2
+//递归方式的楼梯问题 f(n) = f(n-1) + f(n-2)  f(1)=1 f(2)=2
 func stairsNum(n int) int {
 	var res int
 	if resData[n] != 0 {
@@ -137,4 +147,52 @@ func stairsNum(n int) int {
 
 	return res
 }
+
+//非递归方式的楼梯问题
+func stairsNumFor(n int) int {
+	if n == 1 {
+		return 1
+	}
+
+	if n == 2 {
+		return 2
+	}
+
+	ret := 0
+	pre := 2
+	prepare := 1
+	for i:=3; i<=n; i++ {
+		ret = pre + prepare
+		prepare = pre
+		pre = ret
+	}
+
+	return ret
+}
+
+// 获取最终推荐人
+func finalReferrer() string {
+	var relation = map[string]string{
+		"b":"a",
+		"c":"b",
+		"d":"c",
+	}
+
+	ret := ""
+
+	var find func (str string)
+	find = func (str string) {
+		if relation[str] == "" {
+			ret = str
+			return 
+		}
+
+		find(relation[str])
+	}
+	find("d")
+	return ret
+}
+
+
+
 
