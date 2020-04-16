@@ -43,10 +43,10 @@ func main(){
 	ret := findTopN(sli, 3-1, 0, len(sli) - 1)
 	fmt.Println(ret)
 
-	/* 桶排序(大日志文件排序) */
+	/* 桶排序(大日志文件排序)  O(n)*/
 	bucketSort(sli)
 
-	/* 计数排序(高考查分) */
+	/* 计数排序(高考查分) O(n) */
 	countSort(sli)
 
 	/* 思考 GO的排序函数是如何实现的 */
