@@ -9,27 +9,27 @@ import (
 func main(){
 	sli := getToSortSlice()
 
-	/* 冒泡排序 
+	/* 冒泡排序 O(n*n)  稳定排序 原地排序
 		sli = bubbleSort(sli)
 		printSlice(sli)
 	*/
 
-	/* 插入排序  
+	/* 插入排序  O(n*n) 稳定排序 原地排序
 		sli = insertionSort(sli)
 		printSlice(sli)
 	*/
 
-	/* 选择排序 
+	/* 选择排序 O(n*n) 非稳定排序 原地排序
 		sli = selectionSort(sli)
 		printSlice(sli)
 	*/
 	
-	/* 归并排序 
+	/* 归并排序 O(n * logn) 稳定排序 非原地排序  空间复杂度O(n)
 	sli = mergeSort(sli)
 	printSlice(sli)
 	*/
 
-	/* 快速排序 
+	/* 快速排序 O(n * logn) 非稳定排序  原地排序 空间复杂度O(1)
 	sli = quickSort(sli, 0, len(sli) - 1)
 	printSlice(sli)
 	*/
@@ -42,6 +42,14 @@ func main(){
 	*/
 	ret := findTopN(sli, 3-1, 0, len(sli) - 1)
 	fmt.Println(ret)
+
+	/* 桶排序(大日志文件排序) */
+	bucketSort(sli)
+
+	/* 计数排序(高考查分) */
+	countSort(sli)
+
+	/* 思考 GO的排序函数是如何实现的 */
 
 
 }
@@ -131,7 +139,8 @@ func selectionSort(sli []int) []int {
 	return sli
 }
 
-/* 归并排序
+/* 
+	归并排序 时间复杂度 O(n * logn)
 */
 func mergeSort(sli []int) []int  {
 	if len(sli) <= 1 {
@@ -168,7 +177,9 @@ func merge(left, right []int) (result []int) {
 }
 
 
-//快排
+/*
+	快排  时间复杂度 O(n * logn)
+*/
 func quickSort(a []int, lo, hi int) []int {
 	if lo >= hi {
 		return a
@@ -181,16 +192,29 @@ func quickSort(a []int, lo, hi int) []int {
 }
 
 
-/*桶排序
-	大文件排序的时候可以用到，很好的思路。  每个桶的顺序已知，只需要每个桶内排序，然后直接合并即可
+/*桶排序 
+	大文件排序的时候可以用到，很好的思路。  每个桶的顺序已知，只需要每个桶内做快速排序，然后直接合并即可
+	比如需要给一个10G的订单日志排序，而我们的机器就只有1G的内存，显然不能直接把所有的数据都
+	读入内存做排序。  我们可以先扫描数据，分到n个文件中，这个n个文件的顺序是已知的，那么
+	我们只需要针对每个文件做排序即可
+	时间复杂度接近 O(n)  所以叫线性排序
 */
-func bucketSort() []int {
+func bucketSort(sli []int) []int {
+	return nil
+}
+
+/* 计数排序
+	高考查分, 满分900，最小0分，我们把考生根据分数，分配到901个桶中，
+	那每个桶内的分数就是相同的，不再需要排序
+	时间复杂度 O(n) 所以叫线性排序
+*/
+func countSort(sli []int) []int {
 	return nil
 }
 
 
 func partition(a []int, lo, hi int) int {
-	pivot := a[hi]
+	pivot := a[hi] //选取最后一个元素作为分区点，分区点可以选择其他的  可以用三数取中法也可以用随机法来选择分区点
 	i := lo - 1
 	for j := lo; j < hi; j++ {
 		if a[j] < pivot {   //每次把比pivot小的元素前移交换
