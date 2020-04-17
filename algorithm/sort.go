@@ -215,10 +215,12 @@ func countSort(sli []int) []int {
 
 func partition(a []int, lo, hi int) int {
 	pivot := a[hi] //选取最后一个元素作为分区点，分区点可以选择其他的  可以用三数取中法也可以用随机法来选择分区点
-	i := lo - 1
+	i := lo - 1  //i指向的是pivot应该待的位置  
 	for j := lo; j < hi; j++ {
 		if a[j] < pivot {   //每次把比pivot小的元素前移交换
-			i++   //最终可以保证的是  小标<=i的元素，值都比pivot要小，也就是最终找到了pivot的位置
+			//最终可以保证的是  小标<=i的元素，值都比pivot要小，也就是最终找到了pivot的位置
+			//i指针肯定是后置于j指针的
+			i++   
 			a[j], a[i] = a[i], a[j]
 		}
 	}
